@@ -13,7 +13,7 @@ const select = state => ({
 const perform = dispatch => () => ({
   closeModal: () => {
     dispatch(doSetClientSetting(settings.EMAIL_COLLECTION_ACKNOWLEDGED, true));
-    dispatch(doHideModal());
+    // dispatch(doHideModal());
   },
 });
 

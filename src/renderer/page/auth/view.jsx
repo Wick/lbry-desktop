@@ -78,24 +78,24 @@ class AuthPage extends React.PureComponent<Props> {
       <Page>
         {useTemplate ? (
           <section className="card card--section">
-            <header className="card__header card__header--flat">
+            {/* <header className="card__header card__header--flat">
               <h2 className="card__title">{this.getTitle()}</h2>
-            </header>
+            </header> */}
 
-            <div className="card__content">
-              {innerContent}
+            {/* <div className="card__content"> */}
+            {innerContent}
 
-              <p className="help">
-                {`${__(
-                  'This information is disclosed only to LBRY, Inc. and not to the LBRY network. It is only required to earn LBRY rewards and may be used to sync usage data across devices.'
-                )} `}
-                <Button
-                  button="link"
-                  onClick={() => navigate('/discover')}
-                  label={__('Return home.')}
-                />
-              </p>
-            </div>
+            <p className="help">
+              {`${__(
+                'This information is disclosed only to LBRY, Inc. and not to the LBRY network. It is only required to earn LBRY rewards and may be used to sync usage data across devices.'
+              )} `}
+              <Button
+                button="link"
+                onClick={() => navigate('/discover')}
+                label={__('Return home.')}
+              />
+            </p>
+            {/* </div> */}
           </section>
         ) : (
           innerContent

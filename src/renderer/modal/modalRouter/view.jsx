@@ -16,7 +16,6 @@ import ModalTransactionFailed from 'modal/modalTransactionFailed';
 import ModalFileTimeout from 'modal/modalFileTimeout';
 import ModalAffirmPurchase from 'modal/modalAffirmPurchase';
 import ModalRevokeClaim from 'modal/modalRevokeClaim';
-import ModalEmailCollection from 'modal/modalEmailCollection';
 import ModalPhoneCollection from 'modal/modalPhoneCollection';
 import ModalFirstSubscription from 'modal/modalFirstSubscription';
 import ModalConfirmTransaction from 'modal/modalConfirmTransaction';
@@ -79,8 +78,8 @@ class ModalRouter extends React.PureComponent<Props, State> {
     }
 
     const transitionModal = [
-      this.checkShowWelcome,
-      this.checkShowEmail,
+      // this.checkShowWelcome,
+      // this.checkShowEmail,
       this.checkShowCreditIntro,
     ].reduce((acc, func) => (!acc ? func.bind(this)(props) : acc), false);
 
@@ -96,29 +95,29 @@ class ModalRouter extends React.PureComponent<Props, State> {
     }
   }
 
-  checkShowWelcome(props: Props) {
-    const { isWelcomeAcknowledged, user } = props;
-
-    if (!isWelcomeAcknowledged && user && !user.is_reward_approved && !user.is_identity_verified) {
-      return MODALS.WELCOME;
-    }
-
-    return undefined;
-  }
-
-  checkShowEmail(props: Props) {
-    const { isEmailCollectionAcknowledged, isVerificationCandidate, user } = props;
-    if (
-      !isEmailCollectionAcknowledged &&
-      isVerificationCandidate &&
-      user &&
-      !user.has_verified_email
-    ) {
-      return MODALS.EMAIL_COLLECTION;
-    }
-
-    return undefined;
-  }
+  // checkShowWelcome(props: Props) {
+  //   const { isWelcomeAcknowledged, user } = props;
+  //
+  //   if (!isWelcomeAcknowledged && user && !user.is_reward_approved && !user.is_identity_verified) {
+  //     return MODALS.WELCOME;
+  //   }
+  //
+  //   return undefined;
+  // }
+  //
+  // checkShowEmail(props: Props) {
+  //   const { isEmailCollectionAcknowledged, isVerificationCandidate, user } = props;
+  //   if (
+  //     !isEmailCollectionAcknowledged &&
+  //     isVerificationCandidate &&
+  //     user &&
+  //     !user.has_verified_email
+  //   ) {
+  //     return MODALS.EMAIL_COLLECTION;
+  //   }
+  //
+  //   return undefined;
+  // }
 
   checkShowCreditIntro(props: Props) {
     const { balance, page, isCreditIntroAcknowledged } = props;
@@ -185,8 +184,6 @@ class ModalRouter extends React.PureComponent<Props, State> {
         return <ModalRevokeClaim {...modalProps} />;
       case MODALS.PHONE_COLLECTION:
         return <ModalPhoneCollection {...modalProps} />;
-      case MODALS.EMAIL_COLLECTION:
-        return <ModalEmailCollection {...modalProps} />;
       case MODALS.FIRST_SUBSCRIPTION:
         return <ModalFirstSubscription {...modalProps} />;
       case MODALS.SEND_TIP:

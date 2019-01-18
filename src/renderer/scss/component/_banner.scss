@@ -1,0 +1,36 @@
+.banner {
+  display: flex;
+  overflow: hidden;
+  height: 250px;
+
+  font-size: 1.1em;
+  padding: 0 var(--spacing-vertical-large);
+  background-color: $lbry-black;
+  color: $lbry-white;
+}
+
+.banner__item {
+  // position: relative;
+  // position: absolute;
+
+  // padding: var(--spacing-vertical-large);
+  &:not(:first-child) {
+    margin-left: var(--spacing-vertical-large);
+  }
+}
+
+.banner__item--static-height {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner--email {
+  display: flex;
+}
+
+.welcome-wrapper {
+  // position: relative;
+}

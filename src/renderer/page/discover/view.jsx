@@ -2,10 +2,12 @@
 import React from 'react';
 import Page from 'component/page';
 import CategoryList from 'component/categoryList';
+import FirstRun from 'component/firstRun';
 
 type Props = {
   fetchFeaturedUris: () => void,
   fetchRewardedContent: () => void,
+  fetchRewards: () => void,
   fetchingFeaturedUris: boolean,
   featuredUris: {},
 };
@@ -59,24 +61,27 @@ class DiscoverPage extends React.PureComponent<Props> {
     const failedToLoad = !fetchingFeaturedUris && !hasContent;
     return (
       <Page noPadding isLoading={!hasContent && fetchingFeaturedUris}>
+        <FirstRun />
         {hasContent &&
-          Object.keys(featuredUris).map(
-            category =>
-              featuredUris[category].length ? (
-                <CategoryList
-                  key={category}
-                  category={this.trimClaimIdFromCategory(category)}
-                  names={featuredUris[category]}
-                  categoryLink={this.getCategoryLinkPartByCategory(category)}
-                />
-              ) : (
-                <CategoryList
-                  key={category}
-                  category={this.trimClaimIdFromCategory(category)}
-                  categoryLink={category}
-                />
-              )
-          )}
+          Object.keys(featuredUris)
+            .slice(0, 3)
+            .map(
+              category =>
+                featuredUris[category].length ? (
+                  <CategoryList
+                    key={category}
+                    category={this.trimClaimIdFromCategory(category)}
+                    names={featuredUris[category]}
+                    categoryLink={this.getCategoryLinkPartByCategory(category)}
+                  />
+                ) : (
+                  <CategoryList
+                    key={category}
+                    category={this.trimClaimIdFromCategory(category)}
+                    categoryLink={category}
+                  />
+                )
+            )}
         {failedToLoad && <div className="empty">{__('Failed to load landing content.')}</div>}
       </Page>
     );

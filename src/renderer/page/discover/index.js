@@ -1,3 +1,4 @@
+import * as SETTINGS from 'constants/settings';
 import { connect } from 'react-redux';
 import { selectFeaturedUris, selectFetchingFeaturedUris, doFetchFeaturedUris } from 'lbry-redux';
 import { doFetchRewardedContent, doRewardList } from 'lbryinc';
