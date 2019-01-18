@@ -26,6 +26,9 @@ class UserEmailVerify extends React.PureComponent<Props> {
   componentDidUpdate() {
     if (this.emailVerifyCheckInterval && this.props.user.has_verified_email) {
       clearInterval(this.emailVerifyCheckInterval);
+      if (this.props.completeFirstRun) {
+        completeFirstRun();
+      }
     }
   }
 

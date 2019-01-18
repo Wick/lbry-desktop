@@ -5,8 +5,8 @@ import EmailCollection from 'component/emailCollection';
 import Native from 'native';
 
 // const WelcomeWrapper = posed.div({
-//   hide: { top: '500%', flip: true },
-//   show: { top: '0%', flip: true },
+//   hide: { height: 0, flip: true },
+//   show: { height: 250, flip: true },
 // });
 
 const animationConfig = {
@@ -28,7 +28,7 @@ const Welcome = posed.div({
 
 const Email = posed.div({
   hide: { opacity: 0, y: '0', ...spring },
-  show: { opacity: 1, y: '-100%', ...spring, delay: 200 },
+  show: { opacity: 1, y: '-250px', ...spring, delay: 200 },
 });
 
 type Props = {
@@ -74,12 +74,22 @@ export default class FirstRun extends PureComponent<Props> {
   }
 
   render() {
-    const { isWelcomeAcknowledged, isEmailCollectionAcknowledged, acknowledgeWelcome } = this.props;
+    const {
+      isWelcomeAcknowledged,
+      isEmailCollectionAcknowledged,
+      isFirstRunComplete,
+      acknowledgeWelcome,
+    } = this.props;
     // const { showWelcome, showEmail } = this.state;
     const showWelcome = !isWelcomeAcknowledged;
     const showEmail = !isEmailCollectionAcknowledged && isWelcomeAcknowledged;
-    console.log('show email?', showEmail);
-    console.log('show welcome?', showWelcome);
+    // console.log('show email?', showEmail);
+    // console.log('show welcome?', showWelcome);
+    console.log('isFirstRunComplete?', isFirstRunComplete);
+
+    if (isFirstRunComplete) {
+      return null;
+    }
 
     return (
       <div className="banner">

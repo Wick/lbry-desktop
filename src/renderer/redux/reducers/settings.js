@@ -19,6 +19,7 @@ const defaultState = {
     showUnavailable: getLocalStorageSetting(SETTINGS.SHOW_UNAVAILABLE, true),
     welcome_acknowledged: getLocalStorageSetting(SETTINGS.NEW_USER_ACKNOWLEDGED, false),
     email_collection_acknowledged: getLocalStorageSetting(SETTINGS.EMAIL_COLLECTION_ACKNOWLEDGED),
+    [SETTINGS.FIRST_RUN_COMPLETED]: getLocalStorageSetting(SETTINGS.FIRST_RUN_COMPLETED, false),
     credit_required_acknowledged: false, // this needs to be re-acknowledged every run
     language: getLocalStorageSetting(SETTINGS.LANGUAGE, 'en'),
     theme: getLocalStorageSetting(SETTINGS.THEME, 'light'),

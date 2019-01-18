@@ -6,29 +6,29 @@ import UserEmailNew from 'component/userEmailNew';
 import UserEmailVerify from 'component/userEmailVerify';
 
 type Props = {
-  closeModal: () => void,
+  completeFirstRun: () => void,
   email: string,
   user: ?{ has_verified_email: boolean },
 };
 
-class EmailCollection extends React.PureComponent<Props> {
+class FirstRunEmailCollection extends React.PureComponent<Props> {
   render() {
-    const { closeModal, email, user } = this.props;
+    const { completeFirstRun, email, user } = this.props;
 
     // this shouldn't happen
     if (!user) {
       return null;
     }
 
-    const cancelButton = <Button button="link" onClick={closeModal} label={__('Not Now')} />;
+    const cancelButton = <Button button="link" onClick={completeFirstRun} label={__('Not Now')} />;
     if (user && !user.has_verified_email && !email) {
       return <UserEmailNew cancelButton={cancelButton} />;
     } else if (user && !user.has_verified_email) {
-      return <UserEmailVerify cancelButton={cancelButton} />;
+      return <UserEmailVerify completeFirstRun={completeFirstRun} cancelButton={cancelButton} />;
     }
 
     return null;
   }
 }
 
-export default EmailCollection;
+export default FirstRunEmailCollection;

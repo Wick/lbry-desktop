@@ -9,6 +9,7 @@ const select = state => ({
     state
   ),
   isWelcomeAcknowledged: makeSelectClientSetting(SETTINGS.NEW_USER_ACKNOWLEDGED)(state),
+  isFirstRunComplete: makeSelectClientSetting(SETTINGS.FIRST_RUN_COMPLETED)(state),
 });
 
 const perform = dispatch => ({
