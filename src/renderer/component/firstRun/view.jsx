@@ -3,6 +3,7 @@ import posed, { PoseGroup } from 'react-pose';
 import Button from 'component/button';
 import EmailCollection from 'component/emailCollection';
 import Native from 'native';
+import CategoryList from 'component/categoryList';
 
 // const WelcomeWrapper = posed.div({
 //   hide: { height: 0, flip: true },
@@ -22,13 +23,13 @@ const spring = {
 };
 
 const Welcome = posed.div({
-  hide: { opacity: 0, x: '-100%', ...spring },
+  hide: { opacity: 0, y: '348px', ...spring },
   show: { opacity: 1, ...spring },
 });
 
 const Email = posed.div({
   hide: { opacity: 0, y: '0', ...spring },
-  show: { opacity: 1, y: '-250px', ...spring, delay: 200 },
+  show: { opacity: 1, y: '-348px', ...spring, delay: 200 },
 });
 
 type Props = {
@@ -37,23 +38,16 @@ type Props = {
 };
 
 export default class FirstRun extends PureComponent<Props> {
-  state = {
-    showWelcome: false,
-    showEmail: false,
-  };
-
-  componentDidMount() {
-    // setTimeout(() => this.setState({ showEmail: true }), 2000);
-  }
-
   renderWelcome() {
     const { acknowledgeWelcome } = this.props;
 
     return (
       <Fragment>
-        <header className="card__header">
-          <h2 className="card__title">{__('Hello')}</h2>
-          <div className="card__subtitle">
+        <div className="welcome">
+          <header className="card__header">
+            <h1 className="card__title">{__('Hi There')}</h1>
+          </header>
+          <div className="card__content">
             <p>
               {__('Using LBRY is like dating a centaur. Totally normal up top, and')}{' '}
               <em>{__('way different')}</em> {__('underneath.')}
@@ -64,10 +58,10 @@ export default class FirstRun extends PureComponent<Props> {
                 'Below, LBRY is controlled by users -- you -- via blockchain and decentralization.'
               )}
             </p>
+            <div className="card__actions">
+              <Button button="primary" onClick={acknowledgeWelcome} label={__("I'm In")} />
+            </div>
           </div>
-        </header>
-        <div className="card__content">
-          <Button button="primary" onClick={acknowledgeWelcome} label={__("I'm In")} />
         </div>
       </Fragment>
     );
@@ -83,9 +77,9 @@ export default class FirstRun extends PureComponent<Props> {
     // const { showWelcome, showEmail } = this.state;
     const showWelcome = !isWelcomeAcknowledged;
     const showEmail = !isEmailCollectionAcknowledged && isWelcomeAcknowledged;
-    // console.log('show email?', showEmail);
+    console.log('show email?', showEmail);
     // console.log('show welcome?', showWelcome);
-    console.log('isFirstRunComplete?', isFirstRunComplete);
+    console.log('this.props?', this.props);
 
     if (isFirstRunComplete) {
       return null;
@@ -93,9 +87,24 @@ export default class FirstRun extends PureComponent<Props> {
 
     return (
       <div className="banner">
+        {/* <gerbil static />
+        <contentthatchanges static />
+        <categoryList fill /> */}
+        <img
+          alt="Friendly gerbil"
+          className="yrbl--first-run banner__item"
+          src={Native.imagePath('gerbil-happy.png')}
+        />
+
+        {/* <div className=" banner__item--static-height">
+
+        </div> */}
+
         <div className="banner__item">
           <div className="banner__item--static-height">
-            <Welcome pose={showWelcome ? 'show' : 'hide'}>{this.renderWelcome()}</Welcome>
+            <Welcome className="banner__content" pose={showWelcome ? 'show' : 'hide'}>
+              {this.renderWelcome()}
+            </Welcome>
           </div>
           <div className="banner__item--static-height">
             <Email pose={showEmail ? 'show' : 'hide'}>
@@ -103,12 +112,20 @@ export default class FirstRun extends PureComponent<Props> {
             </Email>
           </div>
         </div>
-
-        <div className="banner__item banner__item--static-height">
-          <img
-            alt="Friendly gerbil"
-            className="yrbl--first-run"
-            src={Native.imagePath('gerbil-happy.png')}
+        <div className="banner__item">
+          <CategoryList
+            category={__('More Info On LBRY')}
+            names={[
+              'lbry://lbry',
+              'lbry://one',
+              'lbry://two',
+              'lbry://three',
+              'lbry://four',
+              'lbry://five',
+              'lbry://six',
+              'lbry://seven',
+              'lbry://eight',
+            ]}
           />
         </div>
       </div>

@@ -1,5 +1,6 @@
 import * as SETTINGS from 'constants/settings';
 import { connect } from 'react-redux';
+import { selectUser } from 'lbryinc';
 import { makeSelectClientSetting } from 'redux/selectors/settings';
 import { doSetClientSetting } from 'redux/actions/settings';
 import FirstRun from './view';
@@ -10,6 +11,7 @@ const select = state => ({
   ),
   isWelcomeAcknowledged: makeSelectClientSetting(SETTINGS.NEW_USER_ACKNOWLEDGED)(state),
   isFirstRunComplete: makeSelectClientSetting(SETTINGS.FIRST_RUN_COMPLETED)(state),
+  user: selectUser(state),
 });
 
 const perform = dispatch => ({

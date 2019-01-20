@@ -24,7 +24,7 @@ class FirstRunEmailCollection extends React.PureComponent<Props> {
     if (user && !user.has_verified_email && !email) {
       return <UserEmailNew cancelButton={cancelButton} />;
     } else if (user && !user.has_verified_email) {
-      return <UserEmailVerify completeFirstRun={completeFirstRun} cancelButton={cancelButton} />;
+      return <UserEmailVerify cancelButton={cancelButton} />;
     }
 
     return null;

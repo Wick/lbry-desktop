@@ -34,7 +34,6 @@ class UserEmailNew extends React.PureComponent<Props, State> {
   handleSubmit() {
     const { email } = this.state;
     const { addUserEmail } = this.props;
-    console.log('submit?');
     addUserEmail(email);
   }
 
